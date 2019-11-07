@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item <%= pageTitle === 'Home' ? 'active' : '' %>">
+                         <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <% if(isTeacher && !isStudent){ %>
+                        <li class="nav-item <%= pageTitle === 'Create quiz' ? 'active' : '' %>">
+                            <a class="nav-link" href="/createquiz">Create Quiza</a>
+                        </li>     
+                    <% } %> 
+                    <% if(isTeacher && !isStudent){ %>
+                        <li class="nav-item <%= pageTitle === 'Publish Quizes' ? 'active' : '' %>">
+                            <a class="nav-link" href="/viewteacherquiz">Publish Quizes</a>
+                        </li>     
+                    <% } %>
+                    <% if(!isTeacher){ %>                                   
+                        <li class="nav-item <%= pageTitle === 'Login' ? 'active' : '' %>">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item <%= pageTitle === 'Signup' ? 'active' : '' %>">
+                            <a class="nav-link" href="/signup">Sign up</a>
+                        </li>
+                    <% } %> 
+                    <% if(isStudent){ %>                                   
+                        <li class="nav-item <%= pageTitle === 'Quizes' ? 'active' : '' %>">
+                            <a class="nav-link" href="/quizes">Quizes</a>
+                        </li>
+                    <% } %> 
+                    <% if(isAdmin){ %>   
+                        <li class="nav-item <%= pageTitle === 'Quiz Mangment' ? 'active' : '' %>">
+                            <a class="nav-link" href="/admin/mangmentquiz">Quiz Mange</a>
+                        </li>
+                        <li class="nav-item <%= pageTitle === 'User Mangment' ? 'active' : '' %>">
+                            <a class="nav-link" href="/admin/mangmentteacher">User Mange</a>
+                        </li>
+                    <% } %>
+                </ul>
+                    <% if(isTeacher){ %>                                   
+                    <form action="/logout" method="POST" style="margin-left: auto;">
+                        <% if(isAdmin){ 
+                            var x = "Admin";
+                        }else if(isStudent){
+                            x = "Student";
+                        }else{
+                            x = "Teacher";
+                        }
+                        %>
+                        <input type="submit" value="Logout <%= x %>" class="btn btn-danger">
+                    </form>  
+                    <% } %> 
+            </div>
+        </div>
+    </nav>
+   

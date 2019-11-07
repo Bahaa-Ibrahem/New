@@ -1,0 +1,36 @@
+<%- include('parts/head') %>
+<%- include('parts/nav') %>
+<div class="container text-center" style="margin-top: 30px;text-align: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col col-sm-12">
+                    <h3>All Quzies</h3><br>
+                    <% if(teacherquizes.length === 0){ %>
+                        <p class="alert danger">
+                            There is no quizes
+                        </p>
+                    <% } else { %>
+                        <table  class="table table-bordered">
+                            <thead class="text-center pl-10">
+                                <td>no</td> 
+                                <td>Quiz name</td>
+                                <td>Add questions</td>
+                                <td>View quiz</td>
+                                <td>Publish quiz</td>
+                            </thead>
+                            <tbody class="text-center pl-10">
+                                <% for(let i = 0 ; i < teacherquizes.length ; i++){ %>
+                                    <tr>
+                                        <td> <%= i+1 %> </td>
+                                        <td> <%= teacherquizes[i].quizname %></td>
+                                        <td> <a href='/createquestions/<%= teacherquizes[i].quizname %>'> <button class="btn btn-primary">Add questions</button> </a> </td>                                  
+                                        <td> <a href='/viewquizquestions/<%= teacherquizes[i].quizname %>'> <button class="btn btn-primary">View quiz</button> </a> </td>                                  
+                                        <td> <a href='/createquiz/<%= teacherquizes[i]._id %>/<%= teacherquizes[i].quizname %>/<%= teacherquizes[i].teacherId %>/<%= teacherquizes[i].timestamp %>'> <button class="btn btn-primary">Publish quiz</button> </a> </td>                                  
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+<%- include('parts/footer') %>

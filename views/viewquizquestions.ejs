@@ -1,0 +1,40 @@
+<%- include('parts/head') %>
+<%- include('parts/nav') %>
+<div class="container text-center" style="margin-top: 30px;text-align: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col col-sm-12">
+                    <% if(questions.length === 0){ %>
+                        <p class="alert danger">
+                            There is no questions
+                        </p>
+                    <% } else { %>
+                        <br>
+                        <table  class="table table-bordered">
+                            <thead class="text-center pl-10">
+                                <td>no</td> 
+                                <td>Quiz name</td>
+                                <td>Questions </td>
+                                <td>Possible answer</td>
+                                <td>Possible answer</td>
+                                <td>Possible answer</td>
+                                <td>Delete question </td>
+                            </thead>
+                            <tbody class="text-center pl-10">
+                                <% for(let i = 0 ; i < questions.length ; i++){ %>
+                                    <tr>
+                                        <td> <%= i+1 %> </td>
+                                        <td> <%= questions[i].quizname %></td>
+                                        <td> <%= questions[i].question %></td>
+                                        <td> <%= questions[i].posans1 %></td>
+                                        <td> <%= questions[i].posans2 %></td>
+                                        <td> <%= questions[i].posans3 %></td>
+                                        <td> <a href="/deletequestion/<%= questions[i].quizname %>/<%= questions[i]._id %>"> <button class="btn btn-danger">Delete</button> </a> </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+<%- include('parts/footer') %>

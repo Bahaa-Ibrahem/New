@@ -1,0 +1,30 @@
+<%- include('parts/head') %>
+<%- include('parts/nav') %>
+<div class="container text-center" style="margin-top: 30px;text-align: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col col-sm-12">
+                    <h3>Create Quiz</h3>
+                    <br>
+                    <a href="/viewteacherquiz" style="float: left"><button class="btn btn-primary">View your quizes</button></a>
+                    <br><br><br>
+                    <form action="/createquiz" method="POST">
+                        <input type="text" class="form-control" placeholder="Quiz name" name="quizname"><br>
+                        <% let quiznameError = validationErrors.find(err => err.param === 'quizname'); %>
+                        <% if(quiznameError){ %>
+                            <p class="alert alert-danger">
+                                <%= quiznameError.msg %>
+                            </p>
+                        <% } %>
+                        <input type="hidden" name="teacherId" value="<%= isTeacher %>">
+                        <input type="hidden" name="timestamp">
+                        <input type="submit" class="btn btn-primary" value="Create quiz">
+                    </form>
+                    <% if(authError){ %>
+                    <br>
+                    <p class="alert alert-danger"><%= authError %></p>
+                    <% } %>
+                    <br>
+            </div>
+        </div>
+    </div>
+<%- include('parts/footer') %>

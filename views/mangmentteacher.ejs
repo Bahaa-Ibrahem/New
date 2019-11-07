@@ -1,0 +1,42 @@
+<%- include('parts/head') %>
+<%- include('parts/nav') %>
+<div class="container text-center" style="margin-top: 30px;text-align: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col col-sm-12">
+                    <h3>All Users</h3>
+                    <% if(teachers.length === 0){ %>
+                        <p class="alert danger">
+                            There is no Users
+                        </p>
+                    <% } else { %>
+                        <table  class="table table-bordered">
+                            <thead class="text-center pl-10">
+                                <td>no</td> 
+                                <td>User name</td>
+                                <td>User email</td>
+                                <td>Type</td>
+                                <td>Remove user</td>
+                            </thead>
+                            <tbody class="text-center pl-10">
+                                <% for(let i = 0 ; i < teachers.length ; i++){ %>
+                                    <% 
+                                        var type;
+                                        if(teachers[i].isAdmin) type = "Admin";
+                                        else if(teachers[i].isStudent) type = "Student";
+                                        else type = "Teacher";
+                                    %>
+                                    <tr>
+                                        <td> <%= i+1 %> </td>
+                                        <td> <%= teachers[i].username %></td>
+                                        <td> <%= teachers[i].email %></td>
+                                        <td> <%= type %></td>
+                                        <td> <a href='/admin/mangmentteacher/<%= teachers[i]._id %>/<%= teachers[i].isAdmin %>'> <button class="btn btn-danger">Remove</button> </a> </td>                                                                   
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+<%- include('parts/footer') %>

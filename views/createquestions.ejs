@@ -1,0 +1,65 @@
+<%- include('parts/head') %>
+<%- include('parts/nav') %>
+<div class="container text-center" style="margin-top: 30px;text-align: center;">
+        <div class="row" style="text-align: center;">
+            <div class="col col-sm-12">
+                    <h3>Create Questions</h3>
+                    <br>
+                    <form action="/createquestions" method="POST">
+                        <input type="text" class="form-control" placeholder="Question" name="question" required=""><br>
+                        <% let questionError = validationErrors.find(err => err.param === 'question'); %>
+                        <% if(questionError){ %>
+                            <p class="alert alert-danger">
+                                <%= questionError.msg %>
+                            </p>
+                        <% } %>
+                        <input type="text" class="form-control" placeholder="Possible answer no : 1" name="posans1" required=""><br>
+                        <% let posans1Error = validationErrors.find(err => err.param === 'posans1'); %>
+                        <% if(posans1Error){ %>
+                            <p class="alert alert-danger">
+                                <%= posans1Error.msg %>
+                            </p>
+                        <% } %>
+                        <input type="text" class="form-control" placeholder="Possible answer no : 2" name="posans2" required=""><br>
+                        <% let posans2Error = validationErrors.find(err => err.param === 'posans2'); %>
+                        <% if(posans2Error){ %>
+                            <p class="alert alert-danger">
+                                <%= posans2Error.msg %>
+                            </p>
+                        <% } %>
+                        <input type="text" class="form-control" placeholder="Possible answer no : 3" name="posans3" required=""><br>
+                        <% let posans3Error = validationErrors.find(err => err.param === 'posans3'); %>
+                        <% if(posans3Error){ %>
+                            <p class="alert alert-danger">
+                                <%= posans3Error.msg %>
+                            </p>
+                        <% } %>
+                        <input type="text" class="form-control" placeholder="Correct answer" name="correctans" required=""><br>
+                        <% let correctansError = validationErrors.find(err => err.param === 'correctans'); %>
+                        <% if(correctansError){ %>
+                            <p class="alert alert-danger">
+                                <%= correctansError.msg %>
+                            </p>
+                        <% } %>
+                        <input type="text" class="form-control" placeholder="Descreption" name="descreption" required=""><br>
+                        <% let descreptionError = validationErrors.find(err => err.param === 'descreption'); %>
+                        <% if(descreptionError){ %>
+                            <p class="alert alert-danger">
+                                <%= descreptionError.msg %>
+                            </p>
+                        <% } %>
+                        <input type="hidden" name="teacherId" value="<%= isTeacher %>">
+                        <input type="hidden" name="quizname" value="<%= isQuiz %>">
+                        <input type="hidden" name="timestamp">
+                        <input type="submit" class="btn btn-primary" style="float: right;" value="Publish the question">
+                    </form>
+                    <% if(authError){ %>
+                    <br>
+                    <p class="alert alert-danger"><%= authError %></p>
+                    <% } %>
+                    <br>
+                    <a href="/"><button class="btn btn-primary" style="float: left;">Finish</button></a>
+            </div>
+        </div>
+    </div>
+<%- include('parts/footer') %>
