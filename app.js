@@ -37,16 +37,6 @@ app.use('/createquestions', createQuestionsRouter);
 app.use('/quizes', quizesRouter);
 
 app.use((req, res, next) => {
-    res.status(404);
-    res.render('not-found', {
-        isStudent : req.session.isStudent,
-        isTeacher : req.session.teacherId,
-        isAdmin   : req.session.isAdmin,
-        pageTitle : 'Page not found'
-    });
-});
-
-app.use((req, res, next) => {
     res.status(500);
     res.render('error', {
         isStudent  : req.session.studentId,
@@ -54,6 +44,16 @@ app.use((req, res, next) => {
         isAdmin : req.session.isAdmin,
         pageTitle : 'Page error'
     })
+});
+
+app.use((req, res, next) => {
+    res.status(404);
+    res.render('not-found', {
+        isStudent : req.session.isStudent,
+        isTeacher : req.session.teacherId,
+        isAdmin   : req.session.isAdmin,
+        pageTitle : 'Page not found'
+    });
 });
 
 const PORT = process.env.PORT || 3000;
